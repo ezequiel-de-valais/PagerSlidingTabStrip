@@ -22,6 +22,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
+import android.support.annotation.ArrayRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -36,6 +37,9 @@ import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -137,7 +141,10 @@ public class MainActivity extends ActionBarActivity {
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
         private final String[] TITLES = {"Categories", "Home" };
-
+//        Class<CardFragment>[] cardFragments = new Class<CardFragment>[] {
+//                AnOtherSuperAwesomeCardFragment.class, SuperAwesomeCardFragment.class
+//        };
+        private final List<Class<? extends CardFragment>> fragmentos = Arrays.asList(AnOtherSuperAwesomeCardFragment.class, SuperAwesomeCardFragment.class);
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -154,7 +161,13 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return SuperAwesomeCardFragment.newInstance(position);
+            if (position == 0){
+                return AnOtherSuperAwesomeCardFragment.newInstance(position);
+            }
+                return SuperAwesomeCardFragment.newInstance(position);
+
+//            Class<CardFragment> aClassFragment = (Class<CardFragment>) fragmentos.get(position);
+//            return aClassFragment.newInstance(position);
         }
     }
 }
