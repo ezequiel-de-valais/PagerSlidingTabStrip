@@ -70,8 +70,8 @@ public class MainActivity extends ActionBarActivity {
         final int pageMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4, getResources()
                 .getDisplayMetrics());
         pager.setPageMargin(pageMargin);
-        pager.setCurrentItem(1);
-        changeColor(getResources().getColor(R.color.green));
+        pager.setCurrentItem(0);
+//        changeColor(getResources().getColor(R.color.green));
 
         tabs.setOnTabReselectedListener(new PagerSlidingTabStrip.OnTabReselectedListener() {
             @Override
@@ -87,57 +87,56 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_contact:
-                QuickContactFragment.newInstance().show(getSupportFragmentManager(), "QuickContactFragment");
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_contact:
+//                QuickContactFragment.newInstance().show(getSupportFragmentManager(), "QuickContactFragment");
+//                return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
-    private void changeColor(int newColor) {
-        tabs.setBackgroundColor(newColor);
-        mTintManager.setTintColor(newColor);
-        // change ActionBar color just if an ActionBar is available
-        Drawable colorDrawable = new ColorDrawable(newColor);
-        Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
-        LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
-        if (oldBackground == null) {
-            getSupportActionBar().setBackgroundDrawable(ld);
-        } else {
-            TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
-            getSupportActionBar().setBackgroundDrawable(td);
-            td.startTransition(200);
-        }
+//    private void changeColor(int newColor) {
+//        tabs.setBackgroundColor(newColor);
+//        mTintManager.setTintColor(newColor);
+//        change ActionBar color just if an ActionBar is available
+//        Drawable colorDrawable = new ColorDrawable(newColor);
+//        Drawable bottomDrawable = new ColorDrawable(getResources().getColor(android.R.color.transparent));
+//        LayerDrawable ld = new LayerDrawable(new Drawable[]{colorDrawable, bottomDrawable});
+//        if (oldBackground == null) {
+//            getSupportActionBar().setBackgroundDrawable(ld);
+//        } else {
+//            TransitionDrawable td = new TransitionDrawable(new Drawable[]{oldBackground, ld});
+//            getSupportActionBar().setBackgroundDrawable(td);
+//            td.startTransition(200);
+//        }
+//
+//        oldBackground = ld;
+//        currentColor = newColor;
+//    }
 
-        oldBackground = ld;
-        currentColor = newColor;
-    }
+//    public void onColorClicked(View v) {
+//        int color = Color.parseColor(v.getTag().toString());
+//        changeColor(color);
+//    }
 
-    public void onColorClicked(View v) {
-        int color = Color.parseColor(v.getTag().toString());
-        changeColor(color);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putInt("currentColor", currentColor);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        currentColor = savedInstanceState.getInt("currentColor");
-        changeColor(currentColor);
-    }
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putInt("currentColor", currentColor);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        currentColor = savedInstanceState.getInt("currentColor");
+//        changeColor(currentColor);
+//    }
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = {"Categories", "Home", "Top Paid", "Top Free", "Top Grossing", "Top New Paid",
-                "Top New Free", "Trending"};
+        private final String[] TITLES = {"Categories", "Home" };
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
